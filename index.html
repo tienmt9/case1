@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Ai là triệu phú</title>
+    <style>
+        #skin {
+            border: 3px double black;
+            width: 500px;
+            height: 500px;
+        }
+
+        #startBtn {
+            border: none;
+            border-radius: 100px;
+            margin: 150px auto;
+            padding: 20px 30px;
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+<div id="skin">
+    <div id="mainMenu">
+        <button id="startBtn">BẮT ĐẦU</button>
+    </div>
 
+    <div id="question" class="hide">
+        Câu Hỏi
+    </div>
+</div>
 </body>
-<script src="ui.js"></script>
-<script src="script.js"></script>
-<script src="sound.js"></script>
+<script type="module" src="script.js"></script>
+<script type="module" src="UI.js"></script>
+<script type="module" src="Sound.js"></script>
 </html>
