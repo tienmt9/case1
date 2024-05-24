@@ -11,8 +11,8 @@ class GameBoard {
     }
 
     playBgMusic() {
-        this.mdSound = new Sound('bat_dau.mp3');
-        this.mdSound.start();
+        this.bdSound = new Sound('bat_dau.mp3');
+        this.bdSound.start();
     }
 
     start() {
