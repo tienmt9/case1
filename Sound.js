@@ -7,6 +7,10 @@ class Sound {
     start() {
         this.audioFileName.play();
     }
+
+    // onEnd() {
+    //     this.audioFileName.currentTime = 0;
+    // }
 }
 
 export default Sound;
