@@ -18,6 +18,56 @@
             display: block
         }
 
+        #question {
+            font-family: "Courier New";
+            color: antiquewhite;
+            background-color: #1E90FF;
+            padding: 20px;
+            width: 80%;
+            text-align: center;
+            margin: 50px auto 50px auto;
+            border: 5px groove yellow;
+        }
+
+        #answers {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        #answers > span {
+            font-family: "Times New Roman";
+            color: ghostwhite;
+            border: 2px solid #87CEFA;
+            background-color: #00BFFF;
+            padding: 20px 70px;
+            border-radius: 10px;
+        }
+
+        .blink-bg {
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            animation: blinkingBackground 2s infinite;
+        }
+
+        @keyframes blinkingBackground {
+            0% {
+                background-color: #10c018;
+            }
+            25% {
+                background-color: #1056c0;
+            }
+            50% {
+                background-color: #ef0a1a;
+            }
+            75% {
+                background-color: #FF69B4;
+            }
+            100% {
+                background-color: #04a1d5;
+            }
+        }
     </style>
 </head>
 <body>
@@ -28,10 +78,11 @@
     <div id="questionScreen">
         <div id="question">Câu Hỏi</div>
         <div id="answers">
-            <div id="answer_a">Đáp Án A</div>
-            <div id="answer_b">Đáp Án B</div>
-            <div id="answer_c">Đáp Án C</div>
-            <div id="answer_d">Đáp Án D</div>
+            <span id="answer_a" style="display: inline-block; width: 80px;">Đáp Án A</span>
+            <span id="answer_b" style="display: inline-block; width: 80px;">Đáp Án B</span>
+            <br><br><br>
+            <span id="answer_c" style="display: inline-block; width: 80px;">Đáp Án C</span>
+            <span id="answer_d" style="display: inline-block; width: 80px;">Đáp Án D</span>
         </div>
     </div>
 </div>

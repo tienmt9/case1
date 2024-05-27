@@ -13,10 +13,10 @@ class UI {
         currentScreen.style.display = 'block';
     }
 
-    // hideScreen(screenName) {
-    //     let currentScreen = document.getElementById(screenName);
-    //     currentScreen.style.display = 'none';
-    // }
+    hideScreen(screenName) {
+        let currentScreen = document.getElementById(screenName);
+        currentScreen.style.display = 'none';
+    }
 
     clickOnStartBtn(callback) {
         let startBtn = document.getElementById("startBtn");

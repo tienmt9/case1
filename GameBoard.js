@@ -6,18 +6,18 @@ class GameBoard {
         this.ui = new UI();
         this.ui.showScreen('mainMenu');
         this.ui.clickOnStartBtn(() => {
+            this.ui.hideScreen('mainMenu');
             this.playBgMusic();
-            // this.ui.hideScreen('mainMenu');
-            // this.bdSound.onEnd(() => {
-            //     if (this.bdSound.currentTime == 0) {
-            //         this.start();
-            //     }
-            // });
-            this.start();
+            this.bdSound.addEndedListener(() => {
+                this.start();
+            });
+            // this.start();
         });
 
         this.waitAnswer_1to5 = new Sound("1-5.mp3");
+        this.chooseAnswer = new Sound("chon_dap_an.mp3");
         this.currentQuestion = 0;
+        this.currentAnswer = null;
     }
 
     playBgMusic() {
@@ -27,22 +27,24 @@ class GameBoard {
 
     start() {
         this.ui.showScreen('questionScreen');
-        this.waitAnswer_1to5.start();
+        this.waitAnswer_1to5.start(true);
         this.ui.showQuestion(questions[this.currentQuestion]);
-        this.ui.clickOnAnswer((answer)=>{
-            console.log(answer);
+        this.ui.clickOnAnswer((answer) => {
+            this.currentAnswer = answer;
+            this.waitAnswer_1to5.stop();
+            this.chooseAnswer.restart();
         })
     }
 }
 
 const questions = [
     {
-        question: 'CodeGym',
+        question: 'Đâu là một loại hình chợ tạm tự phát thường xuất hiện trong các khu dân cư?',
         answer: [
-            'C',
-            'O',
-            'D',
-            'E'
+            'Ếch',
+            'Cóc',
+            'Thằn lằn',
+            'Nhái'
         ],
         correct: 1
     }

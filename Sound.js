@@ -4,13 +4,25 @@ class Sound {
         this.audioFileName = new Audio('sound/' + this.fileName);
     }
 
-    start() {
+    start(loop = false) {
+        this.audioFileName.loop = loop;
         this.audioFileName.play();
     }
 
-    // onEnd() {
-    //     this.audioFileName.currentTime = 0;
-    // }
+    stop () {
+        this.audioFileName.pause();
+        this.audioFileName.currentTime = 0;
+    }
+
+    restart() {
+        this.audioFileName.pause();
+        this.audioFileName.currentTime = 0;
+        this.audioFileName.play();
+    }
+
+    addEndedListener(callback) {
+        this.audioFileName.addEventListener('ended', callback);
+    }
 }
 
 export default Sound;
