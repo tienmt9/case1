@@ -1,6 +1,6 @@
 class UI {
     constructor() {
-
+        this.previousSelectedAnswer = null;
     }
 
     showScreen(screenName) {
@@ -32,12 +32,22 @@ class UI {
     }
 
     clickOnAnswer(callback) {
-        document.getElementById('answer_a').addEventListener('click', () => callback(0));
-        document.getElementById('answer_b').addEventListener('click', () => callback(1));
-        document.getElementById('answer_c').addEventListener('click', () => callback(2));
-        document.getElementById('answer_d').addEventListener('click', () => callback(3));
+        document.getElementById('answer_a').addEventListener('click', () => callback('a'));
+        document.getElementById('answer_b').addEventListener('click', () => callback('b'));
+        document.getElementById('answer_c').addEventListener('click', () => callback('c'));
+        document.getElementById('answer_d').addEventListener('click', () => callback('d'));
     }
 
+    selectAnswer(answer) {
+        if (this.previousSelectedAnswer !== null) {
+            this.previousSelectedAnswer.style.backgroundColor = '#00BFFF';
+            this.previousSelectedAnswer.style.color = 'black';
+        }
+        let answerSpan = document.getElementById('answer_' + answer);
+        answerSpan.style.backgroundColor = '#00FF00';
+        answerSpan.style.color = '#F5F5F5';
+        this.previousSelectedAnswer = answerSpan;
+    }
 }
 
 export default UI;

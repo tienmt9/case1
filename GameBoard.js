@@ -8,10 +8,10 @@ class GameBoard {
         this.ui.clickOnStartBtn(() => {
             this.ui.hideScreen('mainMenu');
             this.playBgMusic();
-            this.bdSound.addEndedListener(() => {
-                this.start();
-            });
-            // this.start();
+            // this.bdSound.addEndedListener(() => {
+            //     this.start();
+            // });
+            this.start();
         });
 
         this.waitAnswer_1to5 = new Sound("1-5.mp3");
@@ -33,6 +33,7 @@ class GameBoard {
             this.currentAnswer = answer;
             this.waitAnswer_1to5.stop();
             this.chooseAnswer.restart();
+            this.ui.selectAnswer(answer);
         })
     }
 }
