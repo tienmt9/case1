@@ -16,6 +16,8 @@ class GameBoard {
 
         this.waitAnswer_1to5 = new Sound("1-5.mp3");
         this.chooseAnswer = new Sound("chon_dap_an.mp3");
+        this.correctAnswer = new Sound("dung.mp3");
+        this.wrongAnswer = new Sound("sai.mp3");
         this.currentQuestion = 0;
         this.currentAnswer = null;
     }
@@ -34,7 +36,16 @@ class GameBoard {
             this.waitAnswer_1to5.stop();
             this.chooseAnswer.restart();
             this.ui.selectAnswer(answer);
-        })
+            this.chooseAnswer.addEndedListener(() => {
+                this.checkAnswer();
+            });
+        });
+    }
+
+    checkAnswer() {
+        if (this.currentAnswer == questions[this.currentQuestion].correct) {
+            this.correctAnswer.start();
+        } else this.wrongAnswer.start();
     }
 }
 
@@ -47,7 +58,7 @@ const questions = [
             'Thằn lằn',
             'Nhái'
         ],
-        correct: 1
+        correct: 'a'
     }
 ]
 
