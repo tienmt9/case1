@@ -7,9 +7,13 @@ class Sound {
     start(loop = false) {
         this.audioFileName.loop = loop;
         this.audioFileName.play();
+        setTimeout(() => {
+            this.audioFileName.pause();
+            this.audioFileName.currentTime = 0;
+        }, 10000);
     }
 
-    stop () {
+    stop() {
         this.audioFileName.pause();
         this.audioFileName.currentTime = 0;
     }
@@ -18,10 +22,14 @@ class Sound {
         this.audioFileName.pause();
         this.audioFileName.currentTime = 0;
         this.audioFileName.play();
+        setTimeout(() => {
+            this.audioFileName.pause();
+            this.audioFileName.currentTime = 0;
+        }, 10000);
     }
 
     addEndedListener(callback) {
-        this.audioFileName.addEventListener('ended', callback);
+        this.audioFileName.addEventListener('pause', callback);
     }
 }
 
