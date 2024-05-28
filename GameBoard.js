@@ -48,20 +48,16 @@ class GameBoard {
         if (this.currentQuestion < questions.length) {
             if (answer === questions[this.currentQuestion].correct) {
                 this.correctAnswer.startSound();
-                this.currentQuestion++;
             } else {
                 this.wrongAnswer.startSound();
-                this.currentQuestion++;
+                this.ui.showResult(answer, questions[this.currentQuestion].correct);
             }
             setTimeout(() => {
                 this.ui.resetBgAnswer(answer);
+                this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
+                this.currentQuestion++;
                 this.startGame();
             }, 2100);
-
-            // if (this.currentQuestion < questions.length) {
-
-            // this.ui.resetBgAnswer(answer);
-            // this.startGame();
         } else {
             setTimeout(() => {
                 alert('chuc mung');

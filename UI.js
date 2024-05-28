@@ -54,6 +54,14 @@ class UI {
         previousAnswer.style.backgroundColor = '#00BFFF';
         previousAnswer.style.color = 'black';
     }
+
+    showResult(wrongAnswer, correctAnswer) {
+        document.getElementById('answer_' + wrongAnswer).style.backgroundColor = "#FF4500";
+        document.getElementById('answer_' + wrongAnswer).style.color = "black";
+
+        document.getElementById('answer_' + correctAnswer).style.backgroundColor = "#00FF7F";
+        document.getElementById('answer_' + correctAnswer).style.color = "white";
+    }
 }
 
 export default UI;
