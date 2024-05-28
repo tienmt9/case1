@@ -48,6 +48,12 @@ class UI {
         answerSpan.style.color = '#F5F5F5';
         this.previousSelectedAnswer = answerSpan;
     }
+
+    resetBgAnswer(answer) {
+        let previousAnswer = document.getElementById('answer_' + answer);
+        previousAnswer.style.backgroundColor = '#00BFFF';
+        previousAnswer.style.color = 'black';
+    }
 }
 
 export default UI;
