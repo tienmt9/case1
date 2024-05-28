@@ -48,14 +48,15 @@ class GameBoard {
         if (this.currentQuestion < questions.length) {
             if (answer === questions[this.currentQuestion].correct) {
                 this.correctAnswer.startSound();
+                this.ui.rightResult(answer);
             } else {
                 this.wrongAnswer.startSound();
                 this.ui.showResult(answer, questions[this.currentQuestion].correct);
             }
+            this.currentQuestion++;
             setTimeout(() => {
                 this.ui.resetBgAnswer(answer);
-                this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
-                this.currentQuestion++;
+                this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
                 this.startGame();
             }, 2100);
         } else {

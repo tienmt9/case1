@@ -62,6 +62,13 @@ class UI {
         document.getElementById('answer_' + correctAnswer).style.backgroundColor = "#00FF7F";
         document.getElementById('answer_' + correctAnswer).style.color = "white";
     }
+
+    rightResult(rightAnswer) {
+        document.getElementById('answer_' + rightAnswer).classList.add('blink-bg');
+        setTimeout(() => {
+            document.getElementById('answer_' + rightAnswer).classList.remove('blink-bg');
+        }, 1100);
+    }
 }
 
 export default UI;
