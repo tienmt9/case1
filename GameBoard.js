@@ -9,7 +9,7 @@ class GameBoard {
             this.ui.hideScreen('mainMenu');
             this.playBgMusic();
             this.bdSound.addPausedListener(() => {
-                this.start();
+                this.startGame();
             });
             // this.start();
         });
@@ -20,6 +20,7 @@ class GameBoard {
         this.wrongAnswer = new Sound("sai.mp3");
         this.currentQuestion = 0;
         this.currentAnswer = null;
+        this.timeoutID = null;
     }
 
     playBgMusic() {
@@ -27,51 +28,44 @@ class GameBoard {
         this.bdSound.start10();
     }
 
-    start() {
+    startGame() {
         this.ui.showScreen('questionScreen');
         this.ui.showQuestion(questions[this.currentQuestion]);
-        this.waitAnswer_1to5.start(true);
-
+        this.waitAnswer_1to5.startSound(true);
         this.ui.clickOnAnswer((answer) => {
             this.currentAnswer = answer;
-            this.waitAnswer_1to5.stop();
-            this.chooseAnswer.restart();
+            this.waitAnswer_1to5.stopSound();
+            this.chooseAnswer.restartSound();
             this.ui.selectAnswer(answer);
-
-            // this.chooseAnswer.audioFileName.onpause = null;
-            // this.chooseAnswer.audioFileName.onended = null;
-            // this.correctAnswer.audioFileName.onended = null;
-            // this.wrongAnswer.audioFileName.onended = null;
-
-            // this.chooseAnswer.clearListeners();
-            // this.correctAnswer.clearListeners();
-            // this.wrongAnswer.clearListeners();
-
-            this.chooseAnswer.addPausedListener(() => {
-                this.checkAnswer(answer);
-            });
+            this.timeoutID = setTimeout(() => {
+                this.checkAnswer(this.currentAnswer);
+                clearTimeout(this.timeoutID);
+            }, 10500);
         });
     }
 
     checkAnswer(answer) {
-        if (this.currentAnswer == questions[this.currentQuestion].correct) {
-            this.correctAnswer.start();
-            this.correctAnswer.addEndedListener(() => {
-                if (this.currentQuestion < questions.length) {
-                    this.ui.resetBgAnswer(answer);
-                    this.currentQuestion++;
-                    this.start();
-                }
-            });
+        if (this.currentQuestion < questions.length) {
+            if (answer === questions[this.currentQuestion].correct) {
+                this.correctAnswer.startSound();
+                this.currentQuestion++;
+            } else {
+                this.wrongAnswer.startSound();
+                this.currentQuestion++;
+            }
+            setTimeout(() => {
+                this.ui.resetBgAnswer(answer);
+                this.startGame();
+            }, 2100);
+
+            // if (this.currentQuestion < questions.length) {
+
+            // this.ui.resetBgAnswer(answer);
+            // this.startGame();
         } else {
-            this.wrongAnswer.start();
-            this.wrongAnswer.addEndedListener(() => {
-                if (this.currentQuestion < questions.length) {
-                    this.ui.resetBgAnswer(answer);
-                    this.currentQuestion++;
-                    this.start();
-                }
-            });
+            setTimeout(() => {
+                alert('chuc mung');
+            }, 2100);
         }
     }
 }

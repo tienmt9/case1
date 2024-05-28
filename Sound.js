@@ -4,7 +4,7 @@ class Sound {
         this.audioFileName = new Audio('sound/' + this.fileName);
     }
 
-    start(loop = false) {
+    startSound(loop = false) {
         this.audioFileName.loop = loop;
         this.audioFileName.play();
     }
@@ -12,21 +12,22 @@ class Sound {
     start10() {
         this.audioFileName.play();
         setTimeout(() => {
-            this.stop();
+            this.stopSound();
         }, 10000);
     }
 
-    stop() {
+    stopSound() {
         this.audioFileName.pause();
         this.audioFileName.currentTime = 0;
     }
 
-    restart() {
-        this.stop();
+    restartSound() {
+        this.stopSound();
         this.audioFileName.play();
         setTimeout(() => {
-            this.stop();
+            this.stopSound();
         }, 10000);
+
     }
 
     addPausedListener(callback) {
