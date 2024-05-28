@@ -1,6 +1,7 @@
 class UI {
     constructor() {
         this.previousSelectedAnswer = null;
+        this.highestScore = 0;
     }
 
     showScreen(screenName) {
@@ -23,12 +24,24 @@ class UI {
         startBtn.addEventListener('click', callback);
     }
 
+    clickOnReplayBtn(callback) {
+        let replayBtn = document.getElementById("replayBtn");
+        replayBtn.addEventListener('click', callback);
+    }
+
     showQuestion(question) {
         document.getElementById('question').innerHTML = question.question;
+        document.getElementById('score').innerHTML = `kVND: ${question.score}`;
         document.getElementById('answer_a').innerHTML = question.answer[0];
         document.getElementById('answer_b').innerHTML = question.answer[1];
         document.getElementById('answer_c').innerHTML = question.answer[2];
         document.getElementById('answer_d').innerHTML = question.answer[3];
+    }
+
+    showFinal(question) {
+        document.getElementById('finalScore').innerHTML = `Bạn nhận được giải thưởng là ${question.score / 1000} triệu đồng`;
+        if (this.highestScore < question.score) this.highestScore = question.score;
+        document.getElementById('highestScore').innerHTML = `Kỷ lục đạt được là ${this.highestScore / 1000} triệu đồng`;
     }
 
     clickOnAnswer(callback) {

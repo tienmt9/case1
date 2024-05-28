@@ -33,10 +33,6 @@ class Sound {
     addPausedListener(callback) {
         this.audioFileName.addEventListener('pause', callback);
     }
-
-    addEndedListener(callback) {
-        this.audioFileName.addEventListener('ended', callback);
-    }
 }
 
 export default Sound;

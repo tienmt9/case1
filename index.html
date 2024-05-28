@@ -6,15 +6,15 @@
     <style>
         #skin {
             border: 3px double black;
-            width: 500px;
-            height: 500px;
+            width: 1200px;
+            height: 600px;
         }
 
         #startBtn {
             border: none;
             border-radius: 100px;
             padding: 20px 30px;
-            margin: 150px auto;
+            margin: 200px auto;
             display: block
         }
 
@@ -38,8 +38,28 @@
             font-family: "Times New Roman";
             border: 2px solid #87CEFA;
             background-color: #00BFFF;
-            padding: 20px 70px;
+            padding: 20px 100px;
             border-radius: 10px;
+            margin: 10px 60px 30px auto;
+        }
+
+        #final {
+            border: none;
+            margin: 200px auto;
+            text-align: center;
+        }
+
+        #final > div {
+            font-family: "Courier New";
+        }
+
+        #highestScore {
+            margin-top:50px;
+        }
+
+        #replayBtn {
+            margin-top: 50px;
+            font-family: "Times New Roman";
         }
 
         .blink-bg {
@@ -76,13 +96,19 @@
     </div>
     <div id="questionScreen">
         <div id="question">Câu Hỏi</div>
+        <div id="score">Điểm Số</div>
         <div id="answers">
-            <span id="answer_a" style="display: inline-block; width: 80px;">Đáp Án A</span>
-            <span id="answer_b" style="display: inline-block; width: 80px;">Đáp Án B</span>
+            <span id="answer_a" style="display: inline-block; width: 120px;">Đáp Án A</span>
+            <span id="answer_b" style="display: inline-block; width: 120px;">>Đáp Án B</span>
             <br><br><br>
-            <span id="answer_c" style="display: inline-block; width: 80px;">Đáp Án C</span>
-            <span id="answer_d" style="display: inline-block; width: 80px;">Đáp Án D</span>
+            <span id="answer_c" style="display: inline-block; width: 120px;">Đáp Án C</span>
+            <span id="answer_d" style="display: inline-block; width: 120px;">Đáp Án D</span>
         </div>
+    </div>
+    <div id="final">
+        <div id="finalScore">Giải Thưởng</div>
+        <div id="highestScore">Kỷ Lục</div>
+        <button id="replayBtn">CHƠI LẠI</button>
     </div>
 </div>
 </body>
