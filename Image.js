@@ -1,9 +1,11 @@
 class ImageGame {
-    constructor(fileName) {
+    constructor(fileName, width, height) {
         this.fileImageName = fileName;
         this.img = new Image();
         this.img.src = 'img/' + this.fileImageName;
         this.img.style.display = 'none';
+        this.img.style.width = width;
+        this.img.style.height = height;
         document.body.appendChild(this.img);
     }
 

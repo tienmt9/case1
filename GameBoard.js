@@ -22,7 +22,7 @@ class GameBoard {
         this.correctAnswer = new Sound("dung.mp3");
         this.wrongAnswer = new Sound("sai.mp3");
         this.sayGoodBye = new Sound("loi_tam_biet.mp3")
-        this.logo = new ImageGame('logo.png');
+        this.logo = new ImageGame('logo.png', '1200px', '580px');
         this.currentQuestion = 0;
         this.currentAnswer = null;
         this.timeoutID_1 = null;
@@ -57,7 +57,7 @@ class GameBoard {
     }
 
     checkAnswer(answer) {
-        if (answer === questions[this.currentQuestion].correct) {
+        if (this.isCorrectAnswer(answer, questions[this.currentQuestion].correct)) {
             this.correctAnswer.startSound();
             this.ui.rightResult(answer);
             this.currentQuestion++;
@@ -119,23 +119,38 @@ class GameBoard {
             this.timeoutID_4 = null;
         }
     }
+
+    isCorrectAnswer(selectedAnswer, correctAnswers) {
+        for(let i = 0; i < correctAnswers.length; i++) {
+            if (selectedAnswer === correctAnswers[i]){
+                return true;
+                break;
+            }
+        }
+    }
+
 }
 
 const questions = [{
     question: 'Đâu là một loại hình chợ tạm tự phát thường xuất hiện trong các khu dân cư?',
     score: 0,
-    answer: ['Ếch', 'Cóc', 'Thằn lằn', 'Nhái'],
-    correct: 'b'
+    answer: ['A. Ếch', 'B. Cóc', 'C. Thằn lằn', 'D. Nhái'],
+    correct: ['b']
 }, {
     question: 'Đâu là tên một bãi biển đẹp ở Quảng Bình?',
     score: 2000,
-    answer: ['Đá Lăn', 'Đá Chạy', 'Đá Nhảy', 'Đá Bò'],
-    correct: 'c'
+    answer: ['A. Đá Lăn', 'B. Đá Chạy', 'C. Đá Nhảy', 'D. Đá Bò'],
+    correct: ['c']
 }, {
     question: 'Haiku là thể thơ truyền thống của nước nào?',
     score: 4000,
-    answer: ['Nhật Bản', 'Mông Cổ', 'Trung Quốc', 'Hàn Quốc'],
-    correct: 'a'
+    answer: ['A. Nhật Bản', 'B. Mông Cổ', 'C. Trung Quốc', 'D. Hàn Quốc'],
+    correct: ['a']
+}, {
+    question: 'Trung tâm IT tốt nhất Sài Gòn?',
+    score: 6000,
+    answer: ['A. CodeGym', 'B.', 'C.', 'D.'],
+    correct: ['a']
 }, {
     score: 999000,
 }
