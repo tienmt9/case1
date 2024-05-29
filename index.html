@@ -27,8 +27,25 @@
             border: none;
             border-radius: 100px;
             padding: 20px 30px;
-            margin: 200px 50px 250px auto;
+            margin: 200px 50px 50px auto;
             display: block
+        }
+
+        #guideBtn {
+            border: none;
+            border-radius: 100px;
+            padding: 20px 30px;
+            margin: 0px 50px 0px auto;
+            display: block
+        }
+
+        #guide {
+            border: 5px groove yellow;
+            margin: 50px auto 0px auto;
+            width: 80%;
+            height: 500px;
+            color: antiquewhite;
+            font-size: 2rem;
         }
 
         #question {
@@ -51,8 +68,23 @@
             box-shadow: 0 0 10px #ff00ff;
         }
 
+        #countdown {
+            font-size: 1.5rem;
+            margin-left: 540px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            display: inline-block;
+            color: #000080;
+            border: 2px solid #FFD700;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: whitesmoke;
+        }
+
         #answers {
-            margin-top: 100px;
+            margin-top: 50px;
             text-align: center;
         }
 
@@ -66,6 +98,7 @@
         }
 
         #final {
+            font-size: 1.5rem;
             border: none;
             margin: 200px auto;
             text-align: center;
@@ -80,6 +113,7 @@
         }
 
         #replayBtn {
+            font-size: 1.5rem;
             margin-top: 50px;
             font-family: "Times New Roman";
         }
@@ -115,10 +149,18 @@
 <div id="skin">
     <div id="mainMenu">
         <button id="startBtn">BẮT ĐẦU</button>
+        <button id="guideBtn">HƯỚNG DẪN</button>
+    </div>
+    <div id="guide">
+        - Trả lời đúng các câu hỏi để tăng giá trị giải thưởng nhận được, sai sẽ phải chơi lại từ đầu.
+        <br><br>
+        - Mỗi câu hỏi có 30 giây để trả lời, trong lúc đó nếu thay đổi suy nghĩ khi đã chọn đáp án
+        vẫn có thể chọn lại.
     </div>
     <div id="questionScreen">
         <div id="question">Câu Hỏi</div>
         <div id="score">Điểm Số</div>
+        <div id="countdown">30</div>
         <div id="answers">
             <span id="answer_a" style="display: inline-block; width: 120px;">Đáp Án A</span>
             <span id="answer_b" style="display: inline-block; width: 120px;">>Đáp Án B</span>

@@ -6,6 +6,10 @@ class GameBoard {
     constructor() {
         this.ui = new UI();
         this.ui.showScreen('mainMenu');
+        this.ui.clickOnGuideBtn( () => {
+            this.ui.hideScreen('mainMenu');
+            this.ui.showScreen('guide');
+        });
         this.ui.clickOnStartBtn(() => {
             this.ui.hideScreen('mainMenu');
             this.playBgMusic();
@@ -23,13 +27,14 @@ class GameBoard {
         this.wrongAnswer = new Sound("sai.mp3");
         this.sayGoodBye = new Sound("loi_tam_biet.mp3")
         this.logo = new ImageGame('logo.png', '1200px', '580px');
-        this.mc = new ImageGame('lai_van_sam.png', '1200px', '580px');
         this.currentQuestion = 0;
         this.currentAnswer = null;
         this.timeoutID_1 = null;
         this.timeoutID_2 = null;
         this.timeoutID_3 = null;
         this.timeoutID_4 = null;
+        this.timeInterval = null;
+        this.timeLeft = 30;
 
         const skinDiv = document.getElementById('skin');
         skinDiv.appendChild(this.logo.img);
@@ -43,6 +48,7 @@ class GameBoard {
     startGame() {
         this.ui.showScreen('questionScreen');
         this.ui.showQuestion(questions[this.currentQuestion]);
+        this.startTime();
         this.waitAnswer_1to5.startSound(true);
         this.ui.clickOnAnswer((answer) => {
             this.currentAnswer = answer;
@@ -50,14 +56,20 @@ class GameBoard {
             this.chooseAnswer.restartSound();
             this.ui.selectAnswer(answer);
             this.clearAllTimeouts();
-            this.timeoutID_1 = setTimeout(() => {
+            if(this.timeLeft > 10) {
+                this.timeoutID_1 = setTimeout(() => {
+                    this.checkAnswer(this.currentAnswer);
+                    // }, 500);
+                }, 10500);
+            } else {
+                this.chooseAnswer.stopSound();
                 this.checkAnswer(this.currentAnswer);
-                // }, 500);
-            }, 10500);
+            }
         });
     }
 
     checkAnswer(answer) {
+        clearInterval(this.timeInterval);
         if (this.isCorrectAnswer(answer, questions[this.currentQuestion].correct)) {
             this.correctAnswer.startSound();
             this.ui.rightResult(answer);
@@ -67,6 +79,7 @@ class GameBoard {
                 this.timeoutID_2 = setTimeout(() => {
                     this.ui.resetBgAnswer(answer);
                     this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
+                    this.timeLeft = 30;
                     this.startGame();
                 }, 2100);
             } else {
@@ -79,6 +92,7 @@ class GameBoard {
                         this.sayGoodBye.stopSound();
                         this.ui.resetBgAnswer(answer);
                         this.currentQuestion = 0;
+                        this.timeLeft = 30;
                         this.startGame();
                     });
                 }, 1100);
@@ -96,6 +110,7 @@ class GameBoard {
                     this.ui.resetBgAnswer(answer);
                     this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
                     this.currentQuestion = 0;
+                    this.timeLeft = 30;
                     this.startGame();
                 });
             }, 1100);
@@ -122,14 +137,39 @@ class GameBoard {
     }
 
     isCorrectAnswer(selectedAnswer, correctAnswers) {
-        for(let i = 0; i < correctAnswers.length; i++) {
-            if (selectedAnswer === correctAnswers[i]){
+        for (let i = 0; i < correctAnswers.length; i++) {
+            if (selectedAnswer === correctAnswers[i]) {
                 return true;
                 break;
             }
         }
     }
 
+    startTime() {
+        document.getElementById('countdown').textContent = this.timeLeft;
+        this.timeInterval = setInterval(() => {
+            this.timeLeft--;
+            document.getElementById('countdown').textContent = this.timeLeft;
+            if (this.timeLeft <= 0) {
+                clearInterval(this.timeInterval);
+                this.timeOver();
+            }
+        }, 1000);
+    }
+
+    timeOver() {
+        this.ui.showScreen('final');
+        this.ui.showFinal(questions[this.currentQuestion]);
+        this.sayGoodBye.startSound();
+        this.ui.clickOnReplayBtn(() => {
+            this.sayGoodBye.stopSound();
+            this.ui.resetAllBgAnswer();
+            this.currentQuestion = 0;
+            this.timeLeft = 30;
+            this.clearAllTimeouts();
+            this.startGame();
+        });
+    }
 }
 
 const questions = [{
@@ -150,11 +190,10 @@ const questions = [{
 }, {
     question: 'Trung tâm IT tốt nhất Sài Gòn?',
     score: 6000,
-    answer: ['A. CodeGym', 'B.CodeGym', 'C.CodeGym', 'D.CodeGym'],
+    answer: ['A. CodeGym', 'B. CodeGym', 'C. CodeGym', 'D. CodeGym'],
     correct: ['c']
 }, {
     score: 999000,
-}
-]
+}]
 
 export default GameBoard;

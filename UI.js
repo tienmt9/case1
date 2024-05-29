@@ -2,6 +2,7 @@ class UI {
     constructor() {
         this.previousSelectedAnswer = null;
         this.highestScore = 0;
+        this.allAnswers = ['a', 'b', 'c', 'd'];
     }
 
     showScreen(screenName) {
@@ -22,6 +23,11 @@ class UI {
     clickOnStartBtn(callback) {
         let startBtn = document.getElementById("startBtn");
         startBtn.addEventListener('click', callback);
+    }
+
+    clickOnGuideBtn(callback) {
+        let guideBtn = document.getElementById("guideBtn");
+        guideBtn.addEventListener('click', callback);
     }
 
     clickOnReplayBtn(callback) {
@@ -68,6 +74,13 @@ class UI {
         let previousAnswer = document.getElementById('answer_' + answer);
         previousAnswer.style.backgroundColor = '#00BFFF';
         previousAnswer.style.color = 'black';
+    }
+
+    resetAllBgAnswer() {
+        for(let i = 0; i < 4; i++) {
+            document.getElementById('answer_' + this.allAnswers[i]).style.backgroundColor = '#00BFFF';
+            document.getElementById('answer_' + this.allAnswers[i]).style.color = 'black';
+        }
     }
 
     // resetBgAnswer(correctAnswers) {
