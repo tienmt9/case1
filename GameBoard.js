@@ -151,7 +151,7 @@ const questions = [{
     question: 'Trung tâm IT tốt nhất Sài Gòn?',
     score: 6000,
     answer: ['A. CodeGym', 'B.CodeGym', 'C.CodeGym', 'D.CodeGym'],
-    correct: ['d']
+    correct: ['c']
 }, {
     score: 999000,
 }
