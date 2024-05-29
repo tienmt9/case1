@@ -2,6 +2,7 @@ class Sound {
     constructor(fileName) {
         this.fileSoundName = fileName;
         this.audioFileName = new Audio('sound/' + this.fileSoundName);
+        this.timeoutSoundID = null;
     }
 
     startSound(loop = false) {
@@ -24,7 +25,9 @@ class Sound {
     restartSound() {
         this.stopSound();
         this.audioFileName.play();
-        setTimeout(() => {
+        clearTimeout(this.timeoutSoundID);
+        this.timeoutSoundID = null;
+        this.timeoutSoundID = setTimeout(() => {
             this.stopSound();
         }, 10000);
     }
