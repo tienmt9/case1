@@ -23,6 +23,7 @@ class GameBoard {
         this.wrongAnswer = new Sound("sai.mp3");
         this.sayGoodBye = new Sound("loi_tam_biet.mp3")
         this.logo = new ImageGame('logo.png', '1200px', '580px');
+        this.mc = new ImageGame('lai_van_sam.png', '1200px', '580px');
         this.currentQuestion = 0;
         this.currentAnswer = null;
         this.timeoutID_1 = null;
@@ -149,8 +150,8 @@ const questions = [{
 }, {
     question: 'Trung tâm IT tốt nhất Sài Gòn?',
     score: 6000,
-    answer: ['A. CodeGym', 'B.', 'C.', 'D.'],
-    correct: ['a']
+    answer: ['A. CodeGym', 'B.CodeGym', 'C.CodeGym', 'D.CodeGym'],
+    correct: ['d']
 }, {
     score: 999000,
 }
