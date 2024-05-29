@@ -1,7 +1,7 @@
 class Sound {
     constructor(fileName) {
-        this.fileName = fileName;
-        this.audioFileName = new Audio('sound/' + this.fileName);
+        this.fileSoundName = fileName;
+        this.audioFileName = new Audio('sound/' + this.fileSoundName);
     }
 
     startSound(loop = false) {

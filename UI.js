@@ -40,8 +40,10 @@ class UI {
 
     showFinal(question) {
         document.getElementById('finalScore').innerHTML = `Bạn nhận được giải thưởng là ${question.score / 1000} triệu đồng`;
+        document.getElementById('finalScore').style.color = "white";
         if (this.highestScore < question.score) this.highestScore = question.score;
         document.getElementById('highestScore').innerHTML = `Kỷ lục đạt được là ${this.highestScore / 1000} triệu đồng`;
+        document.getElementById('highestScore').style.color = "white";
     }
 
     clickOnAnswer(callback) {

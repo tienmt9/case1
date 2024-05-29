@@ -1,5 +1,6 @@
 import UI from "./UI.js";
 import Sound from "./Sound.js";
+import ImageGame from "./Image.js";
 
 class GameBoard {
     constructor() {
@@ -8,7 +9,9 @@ class GameBoard {
         this.ui.clickOnStartBtn(() => {
             this.ui.hideScreen('mainMenu');
             this.playBgMusic();
+            this.logo.showImage()
             this.bdSound.addPausedListener(() => {
+                this.logo.hideImage();
                 this.startGame();
             });
             // this.startGame();
@@ -19,12 +22,16 @@ class GameBoard {
         this.correctAnswer = new Sound("dung.mp3");
         this.wrongAnswer = new Sound("sai.mp3");
         this.sayGoodBye = new Sound("loi_tam_biet.mp3")
+        this.logo = new ImageGame('logo.png');
         this.currentQuestion = 0;
         this.currentAnswer = null;
         this.timeoutID_1 = null;
         this.timeoutID_2 = null;
         this.timeoutID_3 = null;
         this.timeoutID_4 = null;
+
+        const skinDiv = document.getElementById('skin');
+        skinDiv.appendChild(this.logo.img);
     }
 
     playBgMusic() {

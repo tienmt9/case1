@@ -6,6 +6,9 @@
     <style>
         #skin {
             border: 3px double black;
+            background-image: url(img/background.png);
+            background-size: cover;
+            background-repeat: no-repeat;
             width: 1200px;
             height: 600px;
         }
@@ -27,6 +30,15 @@
             text-align: center;
             margin: 50px auto 50px auto;
             border: 5px groove yellow;
+        }
+        #score{
+            background-color: whitesmoke;
+            width: 10%;
+            margin-left: 100px;
+            text-align: center;
+            color: #00FF00;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
         }
 
         #answers {
@@ -91,6 +103,7 @@
 </head>
 <body>
 <div id="skin">
+    <image id="logo"></image>
     <div id="mainMenu">
         <button id="startBtn">BẮT ĐẦU</button>
     </div>
