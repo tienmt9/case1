@@ -27,7 +27,6 @@ class Sound {
         setTimeout(() => {
             this.stopSound();
         }, 10000);
-
     }
 
     addPausedListener(callback) {

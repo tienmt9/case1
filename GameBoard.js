@@ -9,6 +9,9 @@ class GameBoard {
         this.ui.clickOnGuideBtn( () => {
             this.ui.hideScreen('mainMenu');
             this.ui.showScreen('guide');
+            this.ui.clickOnReturnBtn(() => {
+                this.ui.showScreen('mainMenu');
+            })
         });
         this.ui.clickOnStartBtn(() => {
             this.ui.hideScreen('mainMenu');
@@ -55,8 +58,8 @@ class GameBoard {
             this.waitAnswer_1to5.stopSound();
             this.chooseAnswer.restartSound();
             this.ui.selectAnswer(answer);
-            this.clearAllTimeouts();
             if(this.timeLeft > 10) {
+                this.clearAllTimeouts();
                 this.timeoutID_1 = setTimeout(() => {
                     this.checkAnswer(this.currentAnswer);
                     // }, 500);

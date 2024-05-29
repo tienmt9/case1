@@ -30,6 +30,11 @@ class UI {
         guideBtn.addEventListener('click', callback);
     }
 
+    clickOnReturnBtn(callback) {
+        let returnBtn = document.getElementById("returnBtn");
+        returnBtn.addEventListener('click', callback);
+    }
+
     clickOnReplayBtn(callback) {
         let replayBtn = document.getElementById("replayBtn");
         replayBtn.addEventListener('click', callback);
