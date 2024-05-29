@@ -7,11 +7,11 @@ class GameBoard {
         this.ui.showScreen('mainMenu');
         this.ui.clickOnStartBtn(() => {
             this.ui.hideScreen('mainMenu');
-            // this.playBgMusic();
-            // this.bdSound.addPausedListener(() => {
-            //     this.startGame();
-            // });
-            this.startGame();
+            this.playBgMusic();
+            this.bdSound.addPausedListener(() => {
+                this.startGame();
+            });
+            // this.startGame();
         });
 
         this.waitAnswer_1to5 = new Sound("1-5.mp3");
@@ -35,69 +35,62 @@ class GameBoard {
     startGame() {
         this.ui.showScreen('questionScreen');
         this.ui.showQuestion(questions[this.currentQuestion]);
-        // this.waitAnswer_1to5.startSound(true);
+        this.waitAnswer_1to5.startSound(true);
         this.ui.clickOnAnswer((answer) => {
             this.currentAnswer = answer;
             this.waitAnswer_1to5.stopSound();
-            // this.chooseAnswer.restartSound();
+            this.chooseAnswer.restartSound();
             this.ui.selectAnswer(answer);
             this.clearAllTimeouts();
             this.timeoutID_1 = setTimeout(() => {
                 this.checkAnswer(this.currentAnswer);
-                // clearTimeout(this.timeoutID_1);
-            }, 500);//10500);
-
-            // clearTimeout(this.timeoutID_2);
-            // clearTimeout(this.timeoutID_3);
-            // clearTimeout(this.timeoutID_4);
-
+                // }, 500);
+            }, 10500);
         });
     }
 
     checkAnswer(answer) {
-        if (this.currentQuestion < questions.length) {
-            if (answer === questions[this.currentQuestion].correct) {
-                this.correctAnswer.startSound();
-                this.ui.rightResult(answer);
-                this.currentQuestion++;
-                if (this.currentQuestion < questions.length) {
-                    this.clearAllTimeouts();
-                    this.timeoutID_2 = setTimeout(() => {
-                        this.ui.resetBgAnswer(answer);
-                        this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
-                        this.startGame();
-                    }, 2100);
-                } else {
-                    this.clearAllTimeouts();
-                    this.timeoutID_4 = setTimeout(() => {
-                        this.ui.showScreen('final');
-                        this.ui.showFinal(questions[this.currentQuestion - 1]);
-                        this.sayGoodBye.startSound();
-                        this.ui.clickOnReplayBtn(() => {
-                            this.sayGoodBye.stopSound();
-                            this.ui.resetBgAnswer(answer);
-                            this.currentQuestion = 0;
-                            this.startGame();
-                        });
-                    }, 1100);
-                }
-            } else {
-                this.wrongAnswer.startSound();
-                this.ui.showResult(answer, questions[this.currentQuestion].correct);
+        if (answer === questions[this.currentQuestion].correct) {
+            this.correctAnswer.startSound();
+            this.ui.rightResult(answer);
+            this.currentQuestion++;
+            if (this.currentQuestion < questions.length - 1) {
                 this.clearAllTimeouts();
-                this.timeoutID_3 = setTimeout(() => {
+                this.timeoutID_2 = setTimeout(() => {
+                    this.ui.resetBgAnswer(answer);
+                    this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
+                    this.startGame();
+                }, 2100);
+            } else {
+                this.clearAllTimeouts();
+                this.timeoutID_4 = setTimeout(() => {
                     this.ui.showScreen('final');
                     this.ui.showFinal(questions[this.currentQuestion]);
                     this.sayGoodBye.startSound();
                     this.ui.clickOnReplayBtn(() => {
                         this.sayGoodBye.stopSound();
                         this.ui.resetBgAnswer(answer);
-                        this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
                         this.currentQuestion = 0;
                         this.startGame();
                     });
                 }, 1100);
             }
+        } else {
+            this.wrongAnswer.startSound();
+            this.ui.showResult(answer, questions[this.currentQuestion].correct);
+            this.clearAllTimeouts();
+            this.timeoutID_3 = setTimeout(() => {
+                this.ui.showScreen('final');
+                this.ui.showFinal(questions[this.currentQuestion]);
+                this.sayGoodBye.startSound();
+                this.ui.clickOnReplayBtn(() => {
+                    this.sayGoodBye.stopSound();
+                    this.ui.resetBgAnswer(answer);
+                    this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
+                    this.currentQuestion = 0;
+                    this.startGame();
+                });
+            }, 1100);
         }
     }
 
@@ -119,7 +112,6 @@ class GameBoard {
             this.timeoutID_4 = null;
         }
     }
-
 }
 
 const questions = [{
@@ -137,11 +129,9 @@ const questions = [{
     score: 4000,
     answer: ['Nhật Bản', 'Mông Cổ', 'Trung Quốc', 'Hàn Quốc'],
     correct: 'a'
+}, {
+    score: 999000,
 }
-    // },
-    // {
-    //     score: 999000,
-    // }
 ]
 
 export default GameBoard;
