@@ -143,9 +143,9 @@ class GameBoard {
         for (let i = 0; i < correctAnswers.length; i++) {
             if (selectedAnswer === correctAnswers[i]) {
                 return true;
-                break;
             }
         }
+        return false;
     }
 
     startTime() {
