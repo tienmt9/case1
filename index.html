@@ -98,12 +98,19 @@
         }
 
         #answers > span {
+            font-size: 1.5rem;
             font-family: "Times New Roman";
             border: 2px solid #87CEFA;
             background-color: #00BFFF;
-            padding: 20px 100px;
+            /*padding: 20px 100px;*/
             border-radius: 10px;
             margin: 10px 60px 30px auto;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 320px;
+            height: 80px;
+            line-height: 80px;
+            vertical-align: middle;
         }
 
         #final {
@@ -172,11 +179,11 @@
         <div id="score">Điểm Số</div>
         <div id="countdown">30</div>
         <div id="answers">
-            <span id="answer_a" style="display: inline-block; width: 120px;">Đáp Án A</span>
-            <span id="answer_b" style="display: inline-block; width: 120px;">>Đáp Án B</span>
+            <span id="answer_a">Đáp Án A</span>
+            <span id="answer_b">>Đáp Án B</span>
             <br><br><br>
-            <span id="answer_c" style="display: inline-block; width: 120px;">Đáp Án C</span>
-            <span id="answer_d" style="display: inline-block; width: 120px;">Đáp Án D</span>
+            <span id="answer_c">Đáp Án C</span>
+            <span id="answer_d">Đáp Án D</span>
         </div>
     </div>
     <div id="final">

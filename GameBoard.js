@@ -6,7 +6,7 @@ class GameBoard {
     constructor() {
         this.ui = new UI();
         this.ui.showScreen('mainMenu');
-        this.ui.clickOnGuideBtn( () => {
+        this.ui.clickOnGuideBtn(() => {
             this.ui.hideScreen('mainMenu');
             this.ui.showScreen('guide');
             this.ui.clickOnReturnBtn(() => {
@@ -60,7 +60,7 @@ class GameBoard {
             this.waitAnswer_1to5.stopSound();
             this.chooseAnswer.restartSound();
             this.ui.selectAnswer(answer);
-            if(this.timeLeft > 10) {
+            if (this.timeLeft > 10) {
                 this.clearAllTimeouts();
                 this.timeoutID_1 = setTimeout(() => {
                     this.checkAnswer(this.currentAnswer);
@@ -191,14 +191,14 @@ class GameBoard {
     }
 
     shuffleQuestions() {
-        for (let i = questions.length - 2; i > 0; i--) {
+        for (let i = questions.length - 3; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [questions[i], questions[j]] = [questions[j], questions[i]];
         }
     }
 
-    changeScoreQuestions () {
-        for(let i = 0; i < questions.length; i++){
+    changeScoreQuestions() {
+        for (let i = 0; i < questions.length; i++) {
             questions[i].score = scores[i];
         }
     }
@@ -220,14 +220,54 @@ const questions = [{
     answer: ['A. Nhật Bản', 'B. Mông Cổ', 'C. Trung Quốc', 'D. Hàn Quốc'],
     correct: ['a']
 }, {
-    question: 'Trung tâm IT tốt nhất Sài Gòn?',
+    question: 'Chiến trường Đắk Tô - Tân Cảnh, nơi diễn ra chiến thắng vang đội năm 1972, nay thuộc địa bàn tỉnh nào ở Tây Nguyên?',
     score: 6000,
+    answer: ['A. Kon Tum', 'B. Đắk Lắk', 'C. Đắk Nông', 'D. Gia Lai'],
+    correct: ['a']
+}, {
+    question: 'Đâu là tên một loại bánh Huế?',
+    score: 10000,
+    answer: ['A. Sướng', 'B. Vui', 'C. Thích', 'D. Khoái'],
+    correct: ['d']
+}, {
+    question: 'Tượng đài Chiến thắng Điện Biên Phủ được dựng trên ngọn đồi nào?',
+    score: 20000,
+    answer: ['A. C1', 'B. E1', 'C. D1', 'D. A1'],
+    correct: ['c']
+}, {
+    question: 'Màu chủ đạo của tờ tiền Polymer mệnh giá 500.000 đồng là gì?',
+    score: 30000,
+    answer: ['A. Xanh', 'B. Vàng', 'C. Đỏ', 'D. Tím'],
+    correct: ['a']
+}, {
+    question: 'Bảo tàng Hồ Chí Minh được thiết kế theo dáng một loài hoa nào?',
+    score: 60000,
+    answer: ['A. Hoa đào', 'B. Hoa sen', 'C. Hoa hướng dương', 'D. Hoa hồng'],
+    correct: ['b']
+}, {
+    question: 'Tổng thống Ukraine Volodymyr Zelensky làm nghề gì trước khi nhậm chức?',
+    score: 100000,
+    answer: ['A. Võ sĩ quyền anh', 'B. Diễn viên hài', 'C. Bác sĩ phẫu thuật', 'D. Doanh nhân'],
+    correct: ['b']
+}, {
+    question: 'Đâu là tên một loại đồ chơi dân gian của trẻ em?',
+    score: 140000,
+    answer: ['A. Tò vò', 'B. Tến tò', 'C. Tò he', 'D. Tò mò'],
+    correct: ['c']
+}, {
+    question: 'Đâu không phải là một tác phẩm của họa sĩ Trần Văn Cẩn?',
+    score: 220000,
+    answer: ['A. Em Thúy', 'B. Em gái tôi', 'C. Đôi bạn', 'D. Mẹ'],
+    correct: ['c']
+}, {
+    question: 'Trung tâm IT tốt nhất Sài Gòn?',
+    score: 300000,
     answer: ['A. CodeGym', 'B. CodeGym', 'C. CodeGym', 'D. CodeGym'],
     correct: ['a', 'b', 'c', 'd']
 }, {
     score: 999000,
 }]
 
-const scores = [0, 2000, 4000, 6000, 999000]
+const scores = [0, 2000, 4000, 6000, 10000, 20000, 30000, 60000, 100000, 140000, 220000, 300000, 999000]
 
 export default GameBoard;
