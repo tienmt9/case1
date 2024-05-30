@@ -19,7 +19,7 @@ class GameBoard {
             this.logo.showImage()
             this.bdSound.addPausedListener(() => {
                 this.logo.hideImage();
-                this.shuffleQuestions();
+                // this.shuffleQuestions();
                 this.startGame();
             });
             // this.startGame();
@@ -100,7 +100,7 @@ class GameBoard {
                         this.ui.resetBgAnswer(answer);
                         this.currentQuestion = 0;
                         this.timeLeft = 30;
-                        this.shuffleQuestions();
+                        // this.shuffleQuestions();
                         this.startGame();
                     });
                 }, 1100);
@@ -122,7 +122,7 @@ class GameBoard {
 
                     this.currentQuestion = 0;
                     this.timeLeft = 30;
-                    this.shuffleQuestions();
+                    // this.shuffleQuestions();
                     this.startGame();
                 });
             }, 1100);
@@ -183,12 +183,12 @@ class GameBoard {
         });
     }
 
-    shuffleQuestions() {
-        for (let i = questions.length - 2; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [questions[i], questions[j]] = [questions[j], questions[i]];
-        }
-    }
+    // shuffleQuestions() {
+    //     for (let i = questions.length - 2; i > 0; i--) {
+    //         const j = Math.floor(Math.random() * (i + 1));
+    //         [questions[i], questions[j]] = [questions[j], questions[i]];
+    //     }
+    // }
 }
 
 const questions = [{
