@@ -19,6 +19,7 @@ class GameBoard {
             this.logo.showImage()
             this.bdSound.addPausedListener(() => {
                 this.logo.hideImage();
+                this.shuffleQuestions();
                 this.startGame();
             });
             // this.startGame();
@@ -45,7 +46,7 @@ class GameBoard {
 
     playBgMusic() {
         this.bdSound = new Sound('bat_dau.mp3');
-        this.bdSound.start10();
+        this.bdSound.startSound_10();
     }
 
     startGame() {
@@ -99,6 +100,7 @@ class GameBoard {
                         this.ui.resetBgAnswer(answer);
                         this.currentQuestion = 0;
                         this.timeLeft = 30;
+                        this.shuffleQuestions();
                         this.startGame();
                     });
                 }, 1100);
@@ -120,6 +122,7 @@ class GameBoard {
 
                     this.currentQuestion = 0;
                     this.timeLeft = 30;
+                    this.shuffleQuestions();
                     this.startGame();
                 });
             }, 1100);
@@ -178,6 +181,13 @@ class GameBoard {
             this.clearAllTimeouts();
             this.startGame();
         });
+    }
+
+    shuffleQuestions() {
+        for (let i = questions.length - 2; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
     }
 }
 

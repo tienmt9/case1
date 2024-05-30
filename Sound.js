@@ -10,7 +10,7 @@ class Sound {
         this.audioFileName.play();
     }
 
-    start10() {
+    startSound_10() {
         this.audioFileName.play();
         setTimeout(() => {
             this.stopSound();
