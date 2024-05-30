@@ -1,6 +1,7 @@
 class UI {
     constructor() {
         this.previousSelectedAnswer = null;
+        this.higherScore = 0;
         this.highestScore = 0;
         this.allAnswers = ['a', 'b', 'c', 'd'];
     }
@@ -50,11 +51,17 @@ class UI {
     }
 
     showFinal(question) {
-        document.getElementById('finalScore').innerHTML = `Bạn nhận được giải thưởng là ${question.score / 1000} triệu đồng`;
+        if(this.higherScore < question.score) this.higherScore = question.score;
+        document.getElementById('finalScore').innerHTML = `Bạn nhận được giải thưởng là ${this.higherScore / 1000} triệu đồng`;
+        // document.getElementById('finalScore').innerHTML = `Bạn nhận được giải thưởng là ${question.score / 1000} triệu đồng`;
         document.getElementById('finalScore').style.color = "white";
         if (this.highestScore < question.score) this.highestScore = question.score;
         document.getElementById('highestScore').innerHTML = `Kỷ lục đạt được là ${this.highestScore / 1000} triệu đồng`;
         document.getElementById('highestScore').style.color = "white";
+    }
+
+    resetScore () {
+        this.higherScore = 0;
     }
 
     clickOnAnswer(callback) {

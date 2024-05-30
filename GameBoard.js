@@ -19,7 +19,8 @@ class GameBoard {
             this.logo.showImage()
             this.bdSound.addPausedListener(() => {
                 this.logo.hideImage();
-                // this.shuffleQuestions();
+                this.shuffleQuestions();
+                this.changeScoreQuestions();
                 this.startGame();
             });
             // this.startGame();
@@ -98,9 +99,11 @@ class GameBoard {
                     this.ui.clickOnReplayBtn(() => {
                         this.sayGoodBye.stopSound();
                         this.ui.resetBgAnswer(answer);
+                        this.ui.resetScore();
                         this.currentQuestion = 0;
                         this.timeLeft = 30;
-                        // this.shuffleQuestions();
+                        this.shuffleQuestions();
+                        this.changeScoreQuestions();
                         this.startGame();
                     });
                 }, 1100);
@@ -120,9 +123,12 @@ class GameBoard {
 
                     this.ui.resetAllBgAnswer();
 
+                    this.ui.resetScore();
+
                     this.currentQuestion = 0;
                     this.timeLeft = 30;
-                    // this.shuffleQuestions();
+                    this.shuffleQuestions();
+                    this.changeScoreQuestions()
                     this.startGame();
                 });
             }, 1100);
@@ -176,6 +182,7 @@ class GameBoard {
         this.ui.clickOnReplayBtn(() => {
             this.sayGoodBye.stopSound();
             this.ui.resetAllBgAnswer();
+            this.ui.resetScore();
             this.currentQuestion = 0;
             this.timeLeft = 30;
             this.clearAllTimeouts();
@@ -183,12 +190,18 @@ class GameBoard {
         });
     }
 
-    // shuffleQuestions() {
-    //     for (let i = questions.length - 2; i > 0; i--) {
-    //         const j = Math.floor(Math.random() * (i + 1));
-    //         [questions[i], questions[j]] = [questions[j], questions[i]];
-    //     }
-    // }
+    shuffleQuestions() {
+        for (let i = questions.length - 2; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
+    }
+
+    changeScoreQuestions () {
+        for(let i = 0; i < questions.length; i++){
+            questions[i].score = scores[i];
+        }
+    }
 }
 
 const questions = [{
@@ -214,5 +227,7 @@ const questions = [{
 }, {
     score: 999000,
 }]
+
+const scores = [0, 2000, 4000, 6000, 999000]
 
 export default GameBoard;
