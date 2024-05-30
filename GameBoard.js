@@ -80,8 +80,11 @@ class GameBoard {
             if (this.currentQuestion < questions.length - 1) {
                 this.clearAllTimeouts();
                 this.timeoutID_2 = setTimeout(() => {
-                    this.ui.resetBgAnswer(answer);
-                    this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
+                    // this.ui.resetBgAnswer(answer);
+                    // this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
+
+                    this.ui.resetAllBgAnswer();
+
                     this.timeLeft = 30;
                     this.startGame();
                 }, 2100);
@@ -110,8 +113,11 @@ class GameBoard {
                 this.sayGoodBye.startSound();
                 this.ui.clickOnReplayBtn(() => {
                     this.sayGoodBye.stopSound();
-                    this.ui.resetBgAnswer(answer);
-                    this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
+                    // this.ui.resetBgAnswer(answer);
+                    // this.ui.resetBgAnswer(questions[this.currentQuestion].correct);
+
+                    this.ui.resetAllBgAnswer();
+
                     this.currentQuestion = 0;
                     this.timeLeft = 30;
                     this.startGame();
@@ -194,7 +200,7 @@ const questions = [{
     question: 'Trung tâm IT tốt nhất Sài Gòn?',
     score: 6000,
     answer: ['A. CodeGym', 'B. CodeGym', 'C. CodeGym', 'D. CodeGym'],
-    correct: ['c']
+    correct: ['a', 'b', 'c', 'd']
 }, {
     score: 999000,
 }]
