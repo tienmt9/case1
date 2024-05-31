@@ -76,7 +76,7 @@ class GameBoard {
                 this.timeoutID_5 = setTimeout(() => {
                     this.chooseAnswer.stopSound();
                     this.checkAnswer(this.currentAnswer);
-                }, 100);
+                }, 100); // vấn đề về đồng bộ hóa, Js đơn luồng
             }
         });
     }
@@ -102,7 +102,8 @@ class GameBoard {
                 this.timeoutID_4 = setTimeout(() => {
                     this.ui.showScreen('final');
                     this.ui.showFinal(questions[this.currentQuestion]);
-                    this.sayGoodBye.startSound(false);
+                    this.sayGoodBye.startSound();
+                    clearInterval(this.timeInterval);
                     this.ui.clickOnReplayBtn(() => {
                         this.sayGoodBye.stopSound();
                         this.ui.resetBgAnswer(answer);
@@ -123,7 +124,8 @@ class GameBoard {
             this.timeoutID_3 = setTimeout(() => {
                 this.ui.showScreen('final');
                 this.ui.showFinal(questions[this.currentQuestion]);
-                this.sayGoodBye.startSound(false);
+                this.sayGoodBye.startSound();
+                clearInterval(this.timeInterval);
                 this.ui.clickOnReplayBtn(() => {
                     this.sayGoodBye.stopSound();
                     // this.ui.resetBgAnswer(answer);
@@ -193,7 +195,7 @@ class GameBoard {
     timeOver() {
         this.ui.showScreen('final');
         this.ui.showFinal(questions[this.currentQuestion]);
-        this.sayGoodBye.startSound(false);
+        this.sayGoodBye.startSound();
         this.ui.clickOnReplayBtn(() => {
             this.sayGoodBye.stopSound();
             this.ui.resetAllBgAnswer();
