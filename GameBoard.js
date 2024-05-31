@@ -95,7 +95,7 @@ class GameBoard {
                 this.timeoutID_4 = setTimeout(() => {
                     this.ui.showScreen('final');
                     this.ui.showFinal(questions[this.currentQuestion]);
-                    this.sayGoodBye.startSound();
+                    this.sayGoodBye.startSound(false);
                     this.ui.clickOnReplayBtn(() => {
                         this.sayGoodBye.stopSound();
                         this.ui.resetBgAnswer(answer);
@@ -115,7 +115,7 @@ class GameBoard {
             this.timeoutID_3 = setTimeout(() => {
                 this.ui.showScreen('final');
                 this.ui.showFinal(questions[this.currentQuestion]);
-                this.sayGoodBye.startSound();
+                this.sayGoodBye.startSound(false);
                 this.ui.clickOnReplayBtn(() => {
                     this.sayGoodBye.stopSound();
                     // this.ui.resetBgAnswer(answer);
@@ -178,7 +178,7 @@ class GameBoard {
     timeOver() {
         this.ui.showScreen('final');
         this.ui.showFinal(questions[this.currentQuestion]);
-        this.sayGoodBye.startSound();
+        this.sayGoodBye.startSound(false);
         this.ui.clickOnReplayBtn(() => {
             this.sayGoodBye.stopSound();
             this.ui.resetAllBgAnswer();
