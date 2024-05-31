@@ -70,13 +70,13 @@ class GameBoard {
             if (this.timeLeft > 10) {
                 this.timeoutID_1 = setTimeout(() => {
                     this.checkAnswer(this.currentAnswer);
-                    // }, 500);
+                    // }, 1000);
                 }, 10000);
             } else {
                 this.timeoutID_5 = setTimeout(() => {
                     this.chooseAnswer.stopSound();
                     this.checkAnswer(this.currentAnswer);
-                }, 1000);
+                }, 100);
             }
         });
     }
