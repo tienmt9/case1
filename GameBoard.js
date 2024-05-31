@@ -195,6 +195,7 @@ class GameBoard {
     timeOver() {
         this.ui.showScreen('final');
         this.ui.showFinal(questions[this.currentQuestion]);
+        this.waitAnswer_1to5.stopSound();
         this.sayGoodBye.startSound();
         this.ui.clickOnReplayBtn(() => {
             this.sayGoodBye.stopSound();
