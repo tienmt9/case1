@@ -40,6 +40,9 @@ class GameBoard {
         this.timeoutID_4 = null;
         this.timeInterval = null;
         this.timeLeft = 30;
+        // this.timeLeft = 15;
+
+        this.timeoutID_5 = null;
 
         const skinDiv = document.getElementById('skin');
         skinDiv.appendChild(this.logo.img);
@@ -53,6 +56,9 @@ class GameBoard {
     startGame() {
         this.ui.showScreen('questionScreen');
         this.ui.showQuestion(questions[this.currentQuestion]);
+
+        clearInterval(this.timeInterval);
+
         this.startTime();
         this.waitAnswer_1to5.startSound(true);
         this.ui.clickOnAnswer((answer) => {
@@ -60,27 +66,28 @@ class GameBoard {
             this.waitAnswer_1to5.stopSound();
             this.chooseAnswer.restartSound();
             this.ui.selectAnswer(answer);
+            this.clearAllTimeouts();
             if (this.timeLeft > 10) {
-                this.clearAllTimeouts();
                 this.timeoutID_1 = setTimeout(() => {
                     this.checkAnswer(this.currentAnswer);
                     // }, 500);
-                }, 10500);
+                }, 10000);
             } else {
-                this.chooseAnswer.stopSound();
-                this.checkAnswer(this.currentAnswer);
+                this.timeoutID_5 = setTimeout(() => {
+                    this.chooseAnswer.stopSound();
+                    this.checkAnswer(this.currentAnswer);
+                }, 1000);
             }
         });
     }
 
     checkAnswer(answer) {
-        clearInterval(this.timeInterval);
         if (this.isCorrectAnswer(answer, questions[this.currentQuestion].correct)) {
             this.correctAnswer.startSound();
             this.ui.rightResult(answer);
             this.currentQuestion++;
+            this.clearAllTimeouts();
             if (this.currentQuestion < questions.length - 1) {
-                this.clearAllTimeouts();
                 this.timeoutID_2 = setTimeout(() => {
                     // this.ui.resetBgAnswer(answer);
                     // this.ui.resetBgAnswer(questions[this.currentQuestion - 1].correct);
@@ -88,10 +95,10 @@ class GameBoard {
                     this.ui.resetAllBgAnswer();
 
                     this.timeLeft = 30;
+                    // this.timeLeft = 15;
                     this.startGame();
                 }, 2100);
             } else {
-                this.clearAllTimeouts();
                 this.timeoutID_4 = setTimeout(() => {
                     this.ui.showScreen('final');
                     this.ui.showFinal(questions[this.currentQuestion]);
@@ -102,6 +109,7 @@ class GameBoard {
                         this.ui.resetScore();
                         this.currentQuestion = 0;
                         this.timeLeft = 30;
+                        // this.timeLeft = 15;
                         this.shuffleQuestions();
                         this.changeScoreQuestions();
                         this.startGame();
@@ -127,6 +135,7 @@ class GameBoard {
 
                     this.currentQuestion = 0;
                     this.timeLeft = 30;
+                    // this.timeLeft = 15;
                     this.shuffleQuestions();
                     this.changeScoreQuestions()
                     this.startGame();
@@ -152,6 +161,12 @@ class GameBoard {
             clearTimeout(this.timeoutID_4);
             this.timeoutID_4 = null;
         }
+
+        if (this.timeoutID_5) {
+            clearTimeout(this.timeoutID_5);
+            this.timeoutID_5 = null;
+        }
+
     }
 
     isCorrectAnswer(selectedAnswer, correctAnswers) {
@@ -185,6 +200,7 @@ class GameBoard {
             this.ui.resetScore();
             this.currentQuestion = 0;
             this.timeLeft = 30;
+            // this.timeLeft = 15;
             this.clearAllTimeouts();
             this.startGame();
         });
